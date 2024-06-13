@@ -17,7 +17,7 @@ export function ResultCard({ title, description, cover, ranking }) {
       </div>
       <div className="result-card-info">
         {ranking && <small>{ranking}</small>}
-        <b>{title}</b>
+        <b className="title">{title}</b>
         <span>{description}</span>
       </div>
     </div>

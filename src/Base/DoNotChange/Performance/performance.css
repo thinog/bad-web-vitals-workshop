@@ -1,0 +1,31 @@
+.performance-debugger {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 10vw;
+  min-width: 160px;
+
+  background-color: #404040;
+  opacity: 0.7;
+  border: dashed 4px black;
+  overflow: hidden;
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 32px;
+}
+
+.performance-debugger .good {
+  color: rgb(0, 255, 0);
+}
+
+.performance-debugger .needs-improvement {
+  color: rgb(255, 255, 0);
+}
+
+.performance-debugger .poor {
+  color: rgb(255, 0, 0);
+}

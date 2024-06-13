@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { request } from "../request";
+import { request } from "../Base";
 
 export function useSearch() {
   const [inputValue, setInputValue] = useState("");
@@ -20,7 +20,9 @@ export function useSearch() {
       if (response && response.results && response.results.length) {
         movies = response.results.map((movie) => ({
           title: movie["title"],
-          description: new Date(movie["release_date"]).getFullYear(),
+          description: movie["release_date"]
+            ? new Date(movie["release_date"]).getFullYear()
+            : "N/A",
           cover: `https://image.tmdb.org/t/p/w200${movie["poster_path"]}`,
           popularity: movie["popularity"],
           ranking: `${Number(Number(movie["vote_average"]).toFixed(1))} / 10`,

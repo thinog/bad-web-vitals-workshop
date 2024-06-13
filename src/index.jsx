@@ -3,7 +3,7 @@ import "./styles.css";
 import { createRoot } from "react-dom/client";
 
 import { Hero } from "./Hero";
-import { PerformanceDebugger } from "./Performance";
+import { PerformanceDebugger } from "./Base";
 import { Search } from "./Search";
 
 const rootElement = document.getElementById("root");
