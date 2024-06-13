@@ -1,6 +1,7 @@
 export function ResultList({ items }) {
   return (
     <div className="result-list">
+      {!items || (!items.length && <span>No results yet...</span>)}
       {items.map((item, index) => (
         <ResultCard key={index} {...item} />
       ))}
@@ -15,7 +16,7 @@ export function ResultCard({ title, description, cover, ranking }) {
         <img src={cover} width={50} />
       </div>
       <div className="result-card-info">
-        {ranking && <small>#{ranking}</small>}
+        {ranking && <small>{ranking}</small>}
         <b>{title}</b>
         <span>{description}</span>
       </div>

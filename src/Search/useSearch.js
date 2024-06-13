@@ -1,36 +1,38 @@
 import { useState } from "react";
+import { request } from "../request";
 
 export function useSearch() {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  // add sort
   // big pagination
   // show actors, other request
   // more complexity
-  const getMovies = (e) => {
-    const r = [];
+  const getMovies = async (e) => {
+    let movies = [];
+    const query = e.target.value;
 
-    fetch(`https://search.imdbot.workers.dev/?q=${e.target.value}`)
-      .then(async (response) => {
-        const result = await response.json();
+    if (query) {
+      const response = await request(
+        `https://api.themoviedb.org/3/search/movie?api_key=d66847ac8930a93c02c80c4243bfd558&query=${query}`,
+      );
 
-        if (result && result.description) {
-          const movies = result.description.map((movie) => ({
-            title: movie["#TITLE"],
-            description: movie["#YEAR"],
-            cover: movie["#IMG_POSTER"],
-            ranking: movie["#RANK"],
-          }));
+      if (response && response.results && response.results.length) {
+        movies = response.results.map((movie) => ({
+          title: movie["title"],
+          description: new Date(movie["release_date"]).getFullYear(),
+          cover: `https://image.tmdb.org/t/p/w200${movie["poster_path"]}`,
+          popularity: movie["popularity"],
+          ranking: `${Number(Number(movie["vote_average"]).toFixed(1))} / 10`,
+        }));
 
-          movies.sort((a, b) => a.ranking - b.ranking);
+        movies.sort((a, b) => b.popularity - a.popularity);
+      }
 
-          r.push(...movies);
-        }
-      })
-      .finally(() => setSuggestions(r));
+      setSuggestions(movies);
+    }
 
-    setInputValue(e.target.value);
+    setInputValue(query);
   };
 
   return {

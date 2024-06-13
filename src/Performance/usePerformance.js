@@ -37,11 +37,13 @@ export function usePerformance() {
     if (metric.value < 0.1) {
       if (metric.value >= 0.05) {
         metric = {
+          ...metric,
           value: metric.value + 0.2,
           rating: "poor",
         };
       } else if (metric.value >= 0.03) {
         metric = {
+          ...metric,
           value: metric.value + 0.1,
           rating: "needs-improvement",
         };
