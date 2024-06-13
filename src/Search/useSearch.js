@@ -2,12 +2,8 @@ import { useState } from "react";
 import { request } from "../Base";
 
 export function useSearch() {
-  const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  // big pagination
-  // show actors, other request
-  // more complexity
   const getMovies = async (e) => {
     let movies = [];
     const query = e.target.value;
@@ -30,16 +26,13 @@ export function useSearch() {
 
         movies.sort((a, b) => b.popularity - a.popularity);
       }
-
-      setSuggestions(movies);
     }
 
-    setInputValue(query);
+    setSuggestions(movies);
   };
 
   return {
     onInput: getMovies,
     suggestions,
-    inputValue,
   };
 }

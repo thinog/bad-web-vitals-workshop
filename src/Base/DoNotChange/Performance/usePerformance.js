@@ -3,8 +3,9 @@ import { onCLS, onINP, onLCP } from "web-vitals";
 
 export const DEFAULT_METRIC_VALUE = Object.freeze({ value: 0, rating: "good" });
 
-export const formatMetric = (value, decimalPlaces = 0) =>
-  Number(Number(value ?? 0).toFixed(decimalPlaces));
+export function formatMetric(value, decimalPlaces = 0) {
+  return Number(Number(value ?? 0).toFixed(decimalPlaces));
+}
 
 export function usePerformance() {
   const [inp, setInp] = useState(DEFAULT_METRIC_VALUE);
