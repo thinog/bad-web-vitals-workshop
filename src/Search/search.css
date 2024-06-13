@@ -1,0 +1,28 @@
+.result-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.result-list {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-card {
+  display: flex;
+  gap: 10px;
+  background-color: #e8e8e8;
+  border: solid 1px rgb(181, 181, 181);
+  height: 73px;
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.result-card-info {
+  display: flex;
+  flex-direction: column;
+}
