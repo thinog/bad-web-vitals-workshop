@@ -1,5 +1,5 @@
-import { ResultList } from "./Result";
 import "./search.css";
+import { ResultList } from "./Result";
 import { useSearch } from "./useSearch";
 
 export function Search() {
