@@ -1,5 +1,9 @@
 import "./performance.css";
-import { formatMetric, usePerformance } from "./usePerformance";
+import { usePerformance } from "./usePerformance";
+
+function formatMetric(value, decimalPlaces = 0) {
+  return Number(Number(isNaN(value) ? 0 : value).toFixed(decimalPlaces));
+}
 
 export function PerformanceDebugger() {
   const { inp, lcp, cls } = usePerformance();
