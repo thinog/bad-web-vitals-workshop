@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { request } from "../Base";
+import { request } from "../Base/request";
 
 export function useSearch() {
   const [suggestions, setSuggestions] = useState([]);
