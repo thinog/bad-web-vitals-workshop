@@ -3,7 +3,9 @@ import "./search.css";
 import { useSearch } from "./useSearch";
 
 export function Search() {
-  const { onInput, suggestions } = useSearch();
+  const { getMovies, suggestions } = useSearch();
+
+  const onInput = (e) => getMovies(e.target.value);
 
   return (
     <div className="search">

@@ -4,9 +4,8 @@ import { request } from "../Base";
 export function useSearch() {
   const [suggestions, setSuggestions] = useState([]);
 
-  const getMovies = async (e) => {
+  const getMovies = async (query) => {
     let movies = [];
-    const query = e.target.value;
 
     if (query) {
       const response = await request(
@@ -32,7 +31,7 @@ export function useSearch() {
   };
 
   return {
-    onInput: getMovies,
+    getMovies,
     suggestions,
   };
 }
