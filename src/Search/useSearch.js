@@ -3,13 +3,26 @@ import { request } from "../Base/request";
 
 export function useSearch() {
   const [suggestions, setSuggestions] = useState([]);
+  const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+
+  if (!apiKey) {
+    return {
+      error: `
+      Missing TMDB API key. 
+      Please, see <a href="https://developer.themoviedb.org/docs/authentication-application">how to generate a key</a>, 
+      and set <b>VITE_TMDB_API_KEY</b> env var with the new key.
+      `,
+      getMovies: () => {},
+      suggestions: [],
+    };
+  }
 
   const getMovies = async (query) => {
     let movies = [];
 
     if (query) {
       const response = await request(
-        `https://api.themoviedb.org/3/search/movie?api_key=d66847ac8930a93c02c80c4243bfd558&query=${query}`,
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`,
       );
 
       if (response && response.results && response.results.length) {

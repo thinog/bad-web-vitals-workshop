@@ -1,4 +1,15 @@
-export function ResultList({ items }) {
+export function ResultList({ items, error }) {
+  if (error) {
+    const errorHtml = `<span class="error">${error}</span>`;
+
+    return (
+      <div
+        className="result-list"
+        dangerouslySetInnerHTML={{ __html: errorHtml }}
+      />
+    );
+  }
+
   return (
     <div className="result-list">
       {!items || (!items.length && <span>No results yet...</span>)}

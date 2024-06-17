@@ -3,7 +3,7 @@ import { ResultList } from "./Result";
 import { useSearch } from "./useSearch";
 
 export function Search() {
-  const { getMovies, suggestions } = useSearch();
+  const { getMovies, suggestions, error } = useSearch();
 
   const onInput = (e) => getMovies(e.target.value);
 
@@ -11,7 +11,7 @@ export function Search() {
     <div className="search">
       <h1>Search for movie infos</h1>
       <input type="text" onInput={onInput} placeholder="Movie name..." />
-      <ResultList items={suggestions} />
+      <ResultList items={suggestions} error={error} />
     </div>
   );
 }
